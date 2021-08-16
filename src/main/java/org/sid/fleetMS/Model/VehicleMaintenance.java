@@ -1,4 +1,8 @@
 package org.sid.fleetMS.Model;
+
+
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -19,30 +25,31 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Client {
+public class VehicleMaintenance {
+		
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	private String name;
-	private String address;
-	private String city;
-	private String phone;
-	private String mobile;
-	private String website;
-	private String email;
+	@ManyToOne
+	@JoinColumn(name="vehicleid", insertable=false, updatable=false)
+	private Vehicle vehicle;
+	private Integer vehicleid;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date startDate;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date endDate;
+	
+	private Double price;
 	
 	@ManyToOne
-	@JoinColumn(name="countryid", insertable=false, updatable=false)
-	private Country country;
-	private Integer countryid;
+	@JoinColumn(name="supplierid", insertable=false, updatable=false)
+	private Supplier supplier;
+	private Integer supplierid;
 	
-	@ManyToOne
-	@JoinColumn(name="stateid", insertable=false, updatable=false)
-	private State state;	
-	private Integer stateid;
-	
-	private String details;
+	private String remarks;
 
 }
