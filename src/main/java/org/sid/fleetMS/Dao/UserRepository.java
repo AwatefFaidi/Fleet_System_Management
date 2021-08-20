@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import org.sid.fleetMS.Model.*;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-
+	User findByUsername(String username);
 }

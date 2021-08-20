@@ -1,12 +1,59 @@
 package org.sid.fleetMS.Web;
+import java.util.List;
+import java.util.Optional;
+
+import org.sid.fleetMS.Model.Country;
+import org.sid.fleetMS.Model.State;
+import org.sid.fleetMS.Service.CountryService;
+import org.sid.fleetMS.Service.StateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
+@RequestMapping("/states")
 public class StateController {
-	@GetMapping("/states")
-	public String getstate()
-	{
+	@Autowired
+	private StateService stateService;
+	@Autowired
+	
+	private CountryService countryService;
+	
+	@GetMapping("")
+	public String getstate(Model model)
+	{List<State> stateList = stateService.getStates();	
+	model.addAttribute("states", stateList);	
+	
+	List<Country> countryList = countryService.getCountries();	
+	model.addAttribute("countries", countryList);
 		return "State";
 	}
+	
+	@PostMapping("/addNew")
+	public String saveCountry(State state ) {		
+		stateService.save(state);
+		return "redirect:/states";
+	}	
+	
+	@RequestMapping("/findById")
+	@ResponseBody
+	public Optional<State> findById(int id) {
+	  return stateService.findById(id);	
+	}	
 
+	@RequestMapping(value="/update", method= {RequestMethod.PUT, RequestMethod.GET})
+	public String update(State state) {
+		stateService.save(state);
+		return "redirect:/states";
+	}
+	
+	@RequestMapping(value="/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
+	public String delete(Integer id) {
+		stateService.delete(id);
+		return "redirect:/states";
+	}
 }
