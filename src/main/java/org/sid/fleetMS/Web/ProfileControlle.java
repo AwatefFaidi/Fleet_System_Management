@@ -14,6 +14,7 @@ public class ProfileControlle {
 	@GetMapping("/profile")
 	public String profile(Model model, Principal principal) {
 		String un= principal.getName();
+		System.out.println(un);
 		
 		model.addAttribute("employee", employeeservice.findByUsername(un));
 		return "profile";

@@ -77,9 +77,9 @@
                   <h6>Administrator</h6>
                 </div>
                 <div class="col-lg-4 col-sm-4 follow-info">
-                  <p>Hello I’m KindsonTheGenius, a leading expert in interactive and creative design.</p>
-                  <p>@KindsonM</p>
-                  <p><i class="fa fa-twitter">kindsonthegenius</i></p>
+                  <p>Hello I’m <span th:text="${employee.firstname}"></span>, a leading expert in interactive and creative design.</p>
+                  <p>@<span th:text="${employee.firstname}"></span></p>
+                  <p><i class="fa fa-twitter"><span th:text="${employee.firstname}"></span></i></p>
                   <h6>
                                     <span th:text="${#dates.format(#dates.createNow(), 'hh:mm a')}"></span>
                                    <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy')}"></span>
@@ -252,7 +252,7 @@
                   <div id="profile" class="tab-pane">
                     <section class="panel">
                       <div class="bio-graph-heading">
-                        Hello I’m Kindson The Genius, a leading expert in interactive and creative design specializing in the mobile medium. My graduation from Massey University with a Bachelor of Design majoring in visual communication.
+                        Hello I’m <span th:text="${employee.firstname}"></span> The Genius, a leading expert in interactive and creative design specializing in the mobile medium. My graduation from Massey University with a Bachelor of Design majoring in visual communication.
                       </div>
                       <div class="panel-body bio-graph-info">
                         <h1>Bio Graph</h1>

@@ -30,7 +30,8 @@ $('document').ready(function() {
 			$('#ddlEmployeeTypeEdit').val(employee.employeetypeid);				
 			var hireDate = employee.hireDate.substr(0,10);
 			$('#txtHireDateEdit').val(hireDate);
-			$('#ddlJobTitleEdit').val(employee.jobtitleid);			
+			$('#ddlJobTitleEdit').val(employee.jobtitleid);	
+			$('#txtUsernameEdit').val(employee.username);
 		});			
 		$('#editModal').modal();		
 	});
